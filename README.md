@@ -1,149 +1,136 @@
-# Rails 4 Sample App on OpenShift #
-Quickstart rails 4 application for openshift.
+Dramatech on Rails (DToR)
+=========
 
-The easiest way to install this application is to use the [OpenShift
-Instant Application][template]. If you'd like to install it
-manually, follow [these directions](#manual-installation).
+Dramatech on Rails (DToR) is the official web application for the Dramatech club at the Georgia Institute of Technology. We strive to provide students with an opportunity to involve themselves in the arts and grow in their knowledge of public speaking, acting, singing, and improvisation, while instilling a comforting sense of community for all those involved.
 
-## OpenShift Considerations ##
-These are some special considerations you may need to keep in mind when
-running your application on OpenShift.
+This repository is for development only. Production is hosted on OpenShift and is managed by the Dramatech webmaster. For information about using the Dramatech website, please go to [dramatech.org](http://dramatech.org/).
 
-### Database ###
-Your application is configured to use your OpenShift database in
-Production mode.
-Because it addresses these databases based on [OpenShift Environment
-Variables](http://red.ht/NvNoXC), you will need to change these if you
-want to use your application in Production mode outside of
-OpenShift.
+----
 
-By default the development and test environment is configured to use
-the sqlite3 database adapter.
+Version & Status (Master)
+---------
+![v0.1.0 build failed](http://b.repl.ca/v1/v0.1.0-build_failed-red.png)
 
-You can also speed up the `git push` process by excluding gems you don't need,
-based on the database you use in OpenShift. You can use the `BUNDLE_WITHOUT`
-environment variable for that:
+----
 
-```
-$ rhc env set BUNDLE_WITHOUT="development test postgresql"
-```
+Installing
+---------
 
-Use the command above if you don't want to install any development gems and you
-are using OpenShift MySQL cartridge.
+Currently, development is only fully supported on OS X and Linux. If you're on Windows, you'll need to try to follow along to the best of your ability.
 
-### Assets ###
-Your application is set to precompile the assets every time you push
-to OpenShift. Any assets you commit to your repo will be preserved
-alongside those which are generated during the build.
+### System Prequisites
+Please follow these instructions, in order, to get all the resources needed to run our Rails app; otherwise, it might not work correctly!
 
-By adding `disable_asset_compilation` marker, you will disable asset compilation upon application deployment.
+#### Xcode
+Apple's Xcode is required for all developers. If you're on Linux, make sure you have some sort of command-line development tools installed for your flavor of linux.
 
-### Security ###
-Since these quickstarts are shared code, we had to take special
-consideration to ensure that security related configuration variables
-was unique across applications.
-To accomplish this, we modified some of the configuration files (shown
-in the table below).
-Now instead of using the same default values, your application will
-generate it's own value using the `initialize_secret` function from `lib/openshift_secret_generator.rb`.
+#### Homebrew
+Homebrew is a utility that allows you to install all the command-line stuff you need to be awesome. Basically, it's magic in a package named for beer breweries that makes it super easy to get widely used open source programs you will use as a developer.
 
-This function uses a secure environment variable that only exists on
-your deployed application and not in your code anywhere.
-You can then use the function to generate any variables you need.
-Each of them will be unique so `initialize_secret(:a)` will differ
-from `initialize_secret(:b)` but they will also be consistent, so any
-time your application uses them (even across reboots), you know they
-will be the same.
+##### Installation Instructions
+1. Open Terminal
+2. Run this script: `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
-TLDR: You should copy/link the `.openshift/lib/openshift_secret_generator.rb`
-file into `./lib` folder and link the `secret_token.rb` and `session_store.rb`
-files into `./config/initializers` folder. Look at this quickstart for an
-example.
+##### Basic Usage
+1. Open Terminal
+2. `cd` into your home directory
+3. Run `brew install {insert package here}` to install any package you need.
+4. If you run into errors, try running `brew doctor` to check your Homebrew installation.
 
-### Development mode ###
-When you develop your Rails application in OpenShift, you can also enable the
-'development' environment by setting the `RAILS_ENV` environment variable,
-using the `rhc` client, like:
+*Side Note:* Homebrew for Linux is available as [Linuxbrew](http://brew.sh/linuxbrew/), if you happen to be running Linux.
 
-```
-$ rhc env set RAILS_ENV=development
-```
+----
 
-If you do so, OpenShift will run your application under 'development' mode.
-In development mode, your application will:
+#### Git
+Git is a handy-dandy tool that developers use to collaborate on projects together. It helps with merging code so that multiple people can work on one file at one, online or offline.
 
-* Show more detailed errors in browser
-* Skip static assets (re)compilation
-* Skip web server restart, as the code is reloaded automatically
-* Skip `bundle` command if the Gemfile is not modified
+##### Installation Instructions
+1. Open Terminal
+2. `cd` into your home directory.
+3. Run this script: `brew install git`
 
-Development environment can help you debug problems in your application
-in the same way as you do when developing on your local machine.
-However, we strong advise you to not run your application in this mode
-in production.
+##### Usage
+Google "Git" and you'll find a slew of tutorials on Git. The basic concept of Git revolves around commits and pull requests, which allow you to merge your work with others' work; [GitHub](http://github.com) has a great intro to the Git workflow and how to get used to it.
 
-##### Modified Files #####
+----
 
-<table>
-  <tr>
-    <th>File</th>
-    <th>Variable</th>
-  </tr>
-  <tr>
-    <td>config/initializers/secret_token.rb</td> 
-    <td>Railsapp::Application.config.secret_token</td>
-  </tr>
-  <tr>
-    <td>config/initializers/session_store.rb</td>
-    <td>Railsapp::Application.config.session_store</td>
-  </tr>
-</table>
+#### ImageMagick
+ImageMagick is a tool that does image modifications, writes images to files, and converts images to different formats. It's required for some of the gems we use, so you should go ahead and install it.
 
-## Manual Installation ##
+##### Installation Instructions
+1. Open Terminal
+2. `cd` into your home directory
+3. Run this script: `brew install imagemagick`
 
-1. Create an account at https://www.openshift.com
+----
 
-1. Create a rails application
+#### PostgreSQL
+PostgreSQL is a database much like MySQL; its open source and quite reliable. We have opted for Postgres for its easy integration and continuous updates.
 
-    ```
-    rhc app create railsapp ruby-2.0
-    ```
+##### Installation Instructions
+1. Open Terminal
+2. `cd` into your home directory
+3. Run this script: `brew install postgresql`
+4. Follow the instructions to load Postgres at login, as well as right now
+5. Then run: `createdb {your database name here} --owner={database user here} -w` twice; once for a development database, one more time for a test database
+6. Write your database names and usernames down for future use!
 
-   **Note:** This quickstart will not work with Ruby 1.8
+----
 
+#### Ruby Version Manager (RVM)
+RVM makes it easy to manage your versions of Ruby in project directories and install the latest stable versions.
 
-1. Add database support to your application
+##### Installation Instructions
+1. Open Terminal
+2. `cd` into your home directory.
+3. Run this script: `\curl -sSL https://get.rvm.io | bash` and follow the on-screen instructions. You will need to close and re-open your Terminal window(s) after installing it.
+4. Install Ruby 2.1.1: `rvm install 2.1.1`
+5. Set RVM to use Ruby 2.1.1: `rvm use 2.1.1`
+6. Set Ruby 2.1.1 to be the default: `rvm --default use 2.1.1`
 
-    ```
-    rhc cartridge add -a railsapp -c mysql-5.5
-    ```
+##### Basic Usage
+- To install a version of Ruby, type `rvm install {your Ruby version}`
+- To use a version of Ruby, type `rvm use {your Ruby version}`
 
-    or
+----
 
-    ```
-    rhc cartridge add -a railsapp -c postgresql-9.2
-    ```
+#### Bundler
+Bundler is a Ruby gem that helps you a group of developers distribute a list of gems that everyone needs to use for an application to work, without putting it all in a Readme.
 
-1. Add this upstream Rails quickstart repository
+##### Installation Instructions
+1. Open Terminal
+2. `cd` into your home directory.
+3. Install the gem: `gem install bundler`
 
-    ```
-    cd railsapp
-    git remote add upstream -m master git://github.com/openshift/rails4-example.git
-    git pull -s recursive -X theirs upstream master
-    ```
+##### Basic Usage
+- To get all the gems needed for a Gemfile, run `bundle install`
+- To rebuild all of the gems for a Gemfile and remake your Gemfile.lock, run `bundle update` (warning - you should not do this without talking to your whole dev team!)
 
-1. Push your new code
+### Get the Project
+1. `cd` into the folder you want the repository to reside in
+2. Run `git clone https://deanpapastrat@bitbucket.org/deanpapastrat/dramatech-app.git`.
+3. Use your Bitbucket credentials to authenticate, then wait for it to download.
 
-    ```
-    git push
-    ```
+## Setting Up
 
-1. That's it! Enjoy your new Rails application!
+### Install the Project's Resources
+1. `cd` into the repository folder.
+2. Run `bundle install`; it will take a while to install all the gems for the first time.
 
+### Configure the Project's Databases
+1. Go into /config in the app, and then copy "copy_to_development.yml" as "development.yml".
+2. Edit development.yml to include your database names, which you wrote down earlier.
+3. Run `rake db:create db:migrate` to setup your database for the first time.
 
-[template]: https://openshift.redhat.com/app/console/application_types
+## Get Going!
+- Run `rails s` to start your server. You can access it at [localhost:3000](http://localhost:3000).
+- We recommend running `rails c` in a separate bash tab so you can make direct changes without a problem.
+- To perform tests, run `rake tests`. Nyan Cat will appear, just for you!
 
-License
--------
+## More Advice & Tips
+Check the wiki for more on developing the Dramatech app; we have instructions for viewing the rdocs and other types of documentation along with test writing.
 
-This code is dedicated to the public domain to the maximum extent permitted by applicable law, pursuant to CC0 (http://creativecommons.org/publicdomain/zero/1.0/)
+## Credits
+Dramatech Application created by Dean Papastrat, [dean.g.papastrat@gmail.com](mailto:dean.g.papastrat@gmail.com) and Ben Hirsch. Previous website created by Dramatech Alumni.
+
+© Dramatech 2014. All rights reserved.
