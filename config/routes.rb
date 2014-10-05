@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  if Rails.env.development? do
-    mount JasmineRails::Engine => '/specs'
-  end
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   devise_for :users
   resources :posts
 end
