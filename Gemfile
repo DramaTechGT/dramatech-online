@@ -37,6 +37,7 @@ group :development, :test do
   gem 'spring'
   gem 'thor'
   # Documentation
+  gem 'nkss-rails', github: 'nadarei/nkss-rails'
   gem 'rdoc'
   gem 'quiet_assets'
   gem 'simplecov'

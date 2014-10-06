@@ -1,3 +1,14 @@
+GIT
+  remote: git://github.com/nadarei/nkss-rails.git
+  revision: 8f5e27e98115daad591ac871a50a7c5ffa966d3e
+  specs:
+    nkss-rails (0.0.2)
+      bluecloth
+      ffaker
+      haml
+      kss
+      rails (>= 3.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -192,6 +203,7 @@ DEPENDENCIES
   kaminari
   kaminari-bootstrap
   minitest
+  nkss-rails!
   nyan-cat-formatter
   pg
   quiet_assets
