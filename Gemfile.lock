@@ -9,6 +9,14 @@ GIT
       kss
       rails (>= 3.2.0)
 
+GIT
+  remote: git://github.com/namick/obfuscate_id.git
+  revision: 37fda6c458fe7bca970f6a801f23080ecd88dfb8
+  specs:
+    obfuscate_id (0.0.4)
+      rails (>= 3.2.15)
+      scatter_swap (~> 0.0.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -168,6 +176,7 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
+    scatter_swap (0.0.3)
     simple_form (3.1.0.rc2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -237,6 +246,7 @@ DEPENDENCIES
   momentjs-rails
   nkss-rails!
   nyan-cat-formatter
+  obfuscate_id!
   pg
   pry
   quiet_assets

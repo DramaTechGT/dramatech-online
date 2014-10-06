@@ -33,9 +33,10 @@ gem 'summernote-rails'
 
 # Utilities
 gem 'browsernizer'
+gem 'jbuilder', '~> 2.0'
+gem 'obfuscate_id', github: 'namick/obfuscate_id'
 ## Remove in Rails 4, as it will become ActiveJob
 gem 'sucker_punch'
-gem 'jbuilder', '~> 2.0'
 
 group :development, :test do
   gem 'jasmine-rails'
