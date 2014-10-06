@@ -37,14 +37,15 @@ gem 'sucker_punch'
 gem 'jbuilder', '~> 2.0'
 
 group :development, :test do
+  gem 'jasmine-rails'
   gem 'minitest'
-  gem 'spring'
-  gem 'thor'
-  # Documentation
   gem 'nkss-rails', github: 'nadarei/nkss-rails'
+  gem "nyan-cat-formatter"
   gem 'rdoc'
   gem 'quiet_assets'
+  gem 'pry'
   gem 'simplecov'
-  gem "nyan-cat-formatter"
+  gem 'spring'
+  gem 'thor'
   gem 'zeus'
 end
