@@ -1,0 +1,20 @@
+.modal-header
+  %button.close{'data-dismiss' => 'modal'}
+    %i.fa.fa-times
+  %h3 Edit Post
+= simple_form_for(@post) do |f|
+  .modal-body
+    - if @post.errors.any?
+      #error_explanation
+        %h2 #{pluralize(@post.errors.count, "error")} prohibited this post from being saved:
+        %ul
+          - @post.errors.full_messages.each do |message|
+            %li= message
+    = f.input :title, autofocus: true
+    .panel.panel-default
+      .panel-default
+        = f.input :text, input_html: {class: 'summernote', id: 'summernote-wysiwyg-editor'}
+    = f.input :publish_date, as: :date_time_picker
+  .modal-footer
+    %button.btn.btn-default{'data-dismiss' => 'modal'} Close
+    = f.button :submit, class: 'btn btn-success', input_html: {'data-dismiss' => 'modal'}

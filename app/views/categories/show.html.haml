@@ -1,0 +1,11 @@
+.modal-header
+  %button.close{'data-dismiss' => 'modal'}
+    %i.fa.fa-times
+  %h3 Viewing Category
+= simple_form_for(@category) do |f|
+  .modal-body
+    = f.input :name, readonly: true
+    = f.input :description, as: :text, readonly: true
+  .modal-footer
+    = link_to 'Edit', edit_category_path(@category), class: 'btn btn-warning modal-link'
+    %button.btn.btn-default{'data-dismiss' => 'modal'} Close

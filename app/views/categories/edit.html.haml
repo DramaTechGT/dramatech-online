@@ -1,0 +1,17 @@
+.modal-header
+  %button.close{'data-dismiss' => 'modal'}
+    %i.fa.fa-times
+  %h3 Editing Category
+= simple_form_for(@category) do |f|
+  .modal-body
+    - if @category.errors.any?
+      #error_explanation
+        %h2 #{pluralize(@category.errors.count, "error")} prohibited this post from being saved:
+        %ul
+          - @category.errors.full_messages.each do |message|
+            %li= message
+    = f.input :name, autofocus: true
+    = f.input :description, as: :text
+  .modal-footer
+    %button.btn.btn-default{'data-dismiss' => 'modal'} Close
+    = f.button :submit, class: 'btn btn-success', input_html: {'data-dismiss' => 'modal'}
