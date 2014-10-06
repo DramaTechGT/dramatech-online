@@ -11,20 +11,24 @@ gem 'devise'
 
 # Assets
 gem 'bootstrap-sass'
+gem 'bootstrap3-datetimepicker-rails'
 gem 'bootswatch-rails'
 gem 'coffee-rails'
 gem 'font-awesome-sass'
 gem 'haml_coffee_assets'
 gem 'jquery-rails'
+gem 'momentjs-rails'
 gem 'sass-rails'
-gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
 # View Helpers
+gem 'codemirror-rails'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
-gem 'simple_form'
+gem 'haml'
+gem 'simple_form', '>= 3.1.0.rc2'
 gem 'smart_listing'
+gem 'summernote-rails'
 
 # Utilities
 gem 'browsernizer'
