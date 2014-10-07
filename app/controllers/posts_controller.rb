@@ -15,6 +15,9 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    unless Time.now >= @post.publish_date
+      redirect_to '/500.html'
+    end
   end
 
   # GET /posts/new
