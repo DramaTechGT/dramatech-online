@@ -24,6 +24,9 @@
 #= require_tree .
 
 $(document).ready ->
+  $("#menu-toggle").click (e) ->
+        e.preventDefault()
+        $("#wrapper").toggleClass("active")
   $('#flashed-alert').delay(2000).fadeOut(400);
   window.modal = $('#modal')
   $('body').on 'click', "a.modal-link", (e) ->

@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
+    @post = Post.new(category_id: params[:category_id])
   end
 
   # GET /posts/1/edit
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @responder, notice: 'Post was successfully created.' }
+        format.html { redirect_to  @post.category ? category_posts_path(@post.category) : posts_path, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }

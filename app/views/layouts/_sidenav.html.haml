@@ -1,0 +1,19 @@
+%li.sidebar-brand
+  %a#menu-toggle{:href => "#"}
+    %span.text-primary DToR
+    %span#main_icon.glyphicon.glyphicon-align-justify
+%ul#sidebar.sidebar-nav
+  %li
+    = link_to 'Home', 'http://localhost:3000'
+  %li
+    = link_to 'Posts', posts_path
+  %li
+    = link_to 'Categories', categories_path
+  %li
+    = link_to 'Shows', categories_path
+  %li
+    = link_to 'Events', categories_path
+  %li
+    = link_to 'Users', categories_path
+  %li
+    = link_to 'Logout', 'http://localhost:3000'

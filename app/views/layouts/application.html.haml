@@ -17,5 +17,16 @@
             %p Hold on a sec, we're sending Buzz to fetch your data from the honeycomb...
           .modal-footer
         #modal-content.modal-content
-    .container-fluid
-      = yield
+    - if content_for :sidenav
+      #wrapper.active
+        #sidebar-wrapper
+          %ul#sidebar_menu.sidebar-nav
+            = yield(:sidenav)
+        #page-content-wrapper
+          .page-content.inset
+            .row
+              .col-md-12
+                = yield
+    - else
+      .container-fluid
+        = yield
