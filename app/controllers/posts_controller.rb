@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
@@ -7,16 +8,18 @@ class PostsController < ApplicationController
     if params[:category_id]
       @category = Category.find(params[:category_id])
       @posts = @category.posts
+      smart_listing_create :posts, @posts, partial: "posts/list", default_sort: {publish_date: :asc}
     else
-      @posts = Post.all
+      @posts = smart_listing_create :posts, Post.includes(:category).all, partial: "posts/list", default_sort: {publish_date: :asc}, remote: false
     end
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
-    unless Time.now >= @post.publish_date
-      redirect_to '/500.html'
+    puts @post.published?
+    unless @post.published? || current_user.is_approved?
+      redirect_to '404.html'
     end
   end
 

@@ -1,7 +1,6 @@
-ruby '2.1.1'
 source 'https://rubygems.org'
 # Core
-gem 'rails', '4.1.6'
+gem 'rails', '4.1.1'
 gem 'rake', '~> 0.9.6'
 gem 'pg'
 gem 'unicorn'
@@ -18,8 +17,9 @@ gem 'coffee-rails'
 gem 'font-awesome-sass'
 gem 'haml_coffee_assets'
 gem 'jquery-rails'
+gem 'jquery-validation-rails'
 gem 'momentjs-rails'
-gem 'sass-rails'
+gem 'sass-rails', github: 'rails/sass-rails'
 gem 'uglifier', '>= 1.3.0'
 
 # View Helpers
@@ -34,20 +34,23 @@ gem 'summernote-rails'
 # Utilities
 gem 'browsernizer'
 gem 'jbuilder', '~> 2.0'
+gem 'json'
 gem 'obfuscate_id', github: 'namick/obfuscate_id'
 ## Remove in Rails 4, as it will become ActiveJob
 gem 'sucker_punch'
+gem 'turbolinks'
 
 group :development, :test do
   gem 'jasmine-rails'
   gem 'minitest'
   gem 'nkss-rails', github: 'nadarei/nkss-rails'
   gem "nyan-cat-formatter"
-  gem 'rdoc'
   gem 'quiet_assets'
   gem 'pry'
   gem 'simplecov'
   gem 'spring'
   gem 'thor'
+  gem 'yard-activerecord'
+  gem 'yard'
   gem 'zeus'
 end

@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :categories do
     resources :posts
   end
+  get '/access_denied', to: 'application#access_denied'
 end
