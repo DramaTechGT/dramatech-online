@@ -18,3 +18,8 @@
 /config/database.yml
 
 .DS_Store
+
+/.yardoc/
+/doc/
+/DramaTech.sublime-project
+/DramaTech.sublime-workspace
