@@ -14,6 +14,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def blog
+    @posts = Post.where(published).per(50)
+  end
+
   # GET /posts/1
   # GET /posts/1.json
   def show

@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   # Development Engines
   mount Nkss::Engine => '/styleguides' if Rails.env.development?
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
+
+  get '/blog', to: 'posts#blog'
   devise_for :users
   resources :posts
   resources :categories do
