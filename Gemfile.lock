@@ -72,6 +72,10 @@ GEM
     cancancan (1.9.2)
     celluloid (0.15.2)
       timers (~> 1.1.0)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.4)
+      climate_control (>= 0.0.3, < 1.0)
     codemirror-rails (4.5)
       railties (>= 3.0, < 5)
     coderay (1.1.0)
@@ -102,6 +106,7 @@ GEM
       coffee-script (~> 2.0)
       sprockets (~> 2.0)
       tilt (~> 1.1)
+    high_voltage (2.2.1)
     hike (1.2.3)
     i18n (0.6.11)
     jasmine-core (2.0.2)
@@ -139,6 +144,11 @@ GEM
     nyan-cat-formatter (0.10.1)
       rspec (>= 2.99, >= 2.14.2, < 4)
     orm_adapter (0.5.0)
+    paperclip (4.2.0)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     pg (0.17.1)
     phantomjs (1.9.7.1)
     polyglot (0.3.5)
@@ -247,6 +257,7 @@ DEPENDENCIES
   font-awesome-sass
   haml
   haml_coffee_assets
+  high_voltage
   jasmine-rails
   jbuilder (~> 2.0)
   jquery-rails
@@ -259,6 +270,7 @@ DEPENDENCIES
   nkss-rails!
   nyan-cat-formatter
   obfuscate_id!
+  paperclip
   pg
   pry
   quiet_assets

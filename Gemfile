@@ -36,6 +36,7 @@ gem 'browsernizer'
 gem 'jbuilder', '~> 2.0'
 gem 'json'
 gem 'obfuscate_id', github: 'namick/obfuscate_id'
+gem 'paperclip'
 ## Remove in Rails 4, as it will become ActiveJob
 gem 'sucker_punch'
 gem 'turbolinks'

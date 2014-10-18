@@ -1,0 +1,14 @@
+<%= simple_form_for(@performance) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :start_time %>
+    <%= f.input :end_time %>
+    <%= f.input :location %>
+    <%= f.input :show %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

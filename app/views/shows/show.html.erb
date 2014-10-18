@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @show.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @show.description %>
+</p>
+
+<p>
+  <strong>Opening date:</strong>
+  <%= @show.opening_date %>
+</p>
+
+<p>
+  <strong>Closing date:</strong>
+  <%= @show.closing_date %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @show.company %>
+</p>
+
+<%= link_to 'Edit', edit_show_path(@show) %> |
+<%= link_to 'Back', shows_path %>

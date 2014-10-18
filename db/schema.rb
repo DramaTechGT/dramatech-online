@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008010926) do
+ActiveRecord::Schema.define(version: 20141018200632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20141008010926) do
     t.datetime "updated_at"
     t.string   "name"
     t.text     "description"
+  end
+
+  create_table "performances", force: true do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "location"
+    t.integer  "show_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "posts", force: true do |t|
@@ -35,6 +44,27 @@ ActiveRecord::Schema.define(version: 20141008010926) do
 
   add_index "posts", ["category_id"], name: "index_posts_on_category_id", using: :btree
   add_index "posts", ["type"], name: "index_posts_on_type", using: :btree
+
+  create_table "reservations", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.text     "notes"
+    t.integer  "performance_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shows", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.date     "opening_date"
+    t.date     "closing_date"
+    t.string   "company"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
